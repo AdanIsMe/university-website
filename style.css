@@ -109,7 +109,7 @@ nav img{
 
     font-size: 13px;
     background: transparent; /*disabled it and nothing changed, i believe it is useless here*/
-    position: relative; /*?????????when do i write this? because i also disabled this one and nothing changed???????*/
+    position: relative;
     cursor: pointer;
 }
 
@@ -186,7 +186,7 @@ nav img{
 
 .campus-col img{
     width: 100%;
-    display: block; /*????? it fixed the bottom of the image and made it round, and made the hover layer not overflow, but i dont understand why it helped ?????*/
+    display: block;
 }
 
 .layer{
