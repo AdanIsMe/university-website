@@ -1,0 +1,468 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.header{
+    /*minimum height of the element should be 100% of the viewport height*/
+    min-height: 100vh;
+    
+    /*full width of the webpage*/
+    width: 100%;
+
+    background-image: linear-gradient(rgba(4,9,30,0.7), rgba(4,9,30,0.7)), url(images/background_building.png); /*missing an image*/
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2% 6%;
+}
+
+nav img{
+    width: 150px;
+}
+
+
+/*as mentioned in html file: nav-links is a flex ITEM, therefore we can use the flex property on it*/
+/*flex: 1; means flex-grow: 1. which means: equal distributions of the remaining space in the flex container, to its children*/
+.nav-links{
+    flex: 1;
+    text-align: right;
+}
+
+/*addressing the list items (regardless of what's in them)*/
+.nav-links ul li{
+    list-style: none;
+
+    /*in order to have them side by side*/
+    display: inline-block; /*sidenote for self: could have used flex, but then would have had to add an in-between space with the logo)*/
+
+    /*in order to separate them*/
+    padding: 8px 12px;
+
+    position: relative;
+}
+
+/*addressing the hyperlinks in each list item*/
+.nav-links ul li a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+/*for cosmetic effect: a "small rectangle"*/
+.nav-links ul li::after{
+    /*must include content, but since we do not wish to add words, we put the "" value*/
+    content: "";
+
+    /*hidden while item not hovered*/
+    width: 0%;
+
+    height: 2px;
+    background: rgba(4,9,30,0.7);
+
+    display: block;
+    margin: auto;
+
+    /*cool effect*/
+    transition: 0.5s; /*sidenote: i added it in the hover::after and it worked the same, and that placement makes more sense to me*/
+}
+
+/*to display the cosmetic effect when hovering (a line under)*/
+.nav-links ul li:hover::after{
+    width: 100%;    
+}
+
+
+.text-box{
+    width: 90%; /*picks percantage based on desired outcome according to the chosen design*/
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /*to center the text-box both horizontally and vertically within its parent container: header.*/
+    text-align: center;
+}
+
+.text-box h1{
+    size: 62px;
+}
+.text-box p{
+    margin: 10px 0 40px;
+    font-size: 14px;
+}
+
+.hero-btn{
+    display: inline-block; /*got a similar result without it*/
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid #fff;
+
+    /*for space between the border and the text*/
+    padding: 12px 34px;
+
+    font-size: 13px;
+    background: transparent; /*disabled it and nothing changed, i believe it is useless here*/
+    position: relative; /*?????????when do i write this? because i also disabled this one and nothing changed???????*/
+    cursor: pointer;
+}
+
+.hero-btn:hover{
+    border: 1px solid rgba(4,9,30,0.7);
+    background: rgba(4,9,30,0.7);
+    transition: 1s; /*gradually changes the border and background colors*/
+}
+
+/*----- COURSE -----*/
+.course{
+    width: 80%; /*my understanding is: it caps the length of the sentences at 80% of parent width*/
+    margin: auto; /*applied in order to override the universal margin: 0;*/
+    text-align: center;
+    padding-top: 100px; /*for adequate space between the home page and the course page underneath it*/
+}
+
+.course h1{
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.course p{
+    color: #777;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+    padding: 10px;
+}
+
+/*the "3 next to each other" method*/
+.row{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.course-col{
+    flex-basis: 31%;
+    background: rgba(192, 201, 239, 0.7);
+    border-radius: 10px;
+    margin-bottom: 5%;
+    padding: 20px 12px;
+    box-sizing: border-box; /*so that border and padding are not calculated in the ACTUAL width\height of the element*/
+    transition: 0.5s;
+}
+
+.course-col h3{
+    text-align: center; /*it was already in the center*/
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.course-col:hover{
+    box-shadow: 0 0 20px 0px rgba(0,0,0,0.2);
+}
+
+/*----- CAMPUS -----*/
+.campus{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 50px;
+
+}
+
+.campus-col{
+    flex-basis: 32%;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.campus-col img{
+    width: 100%;
+    display: block; /*????? it fixed the bottom of the image and made it round, and made the hover layer not overflow, but i dont understand why it helped ?????*/
+}
+
+.layer{
+    background: transparent;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.5s;
+}
+
+.layer:hover{
+    background: rgba(34, 34, 143, 0.7);
+}
+
+.layer h3{
+    width: 100%; /*i believe it is not needed*/
+    font-weight: 500;
+    color: #fff;
+    font-size: 26px;
+    
+    /*I've tried but could not fully understand why it had to be done this way*/
+    /*the goal from this is to start the transition of the header from the bottom to the middle, when hovered.*/
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+
+    /*in order for the name of the city (the h3) to show up only when image (the layer) is hovered*/
+    opacity: 0; /*the words are hidden*/
+    transition: 0.5s;
+}
+
+.layer:hover h3{
+    bottom: 49%;
+    opacity: 1;
+}
+
+
+/*----- FACILITIES -----*/
+.facilities{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.facilities-col{
+    flex-basis: 31%;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    text-align: left;
+}
+
+.facilities-col img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.facilities-col p{
+    padding: 0;
+}
+
+.facilities-col h3{
+    margin-top: 16px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/*----- TESTIMONIALS -----*/
+
+.testimonials{
+    width: 80%;
+    margin: auto;
+    padding-top: 100px;
+    text-align: center;
+}
+
+.testimonials-col{
+    flex-basis: 44%;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    text-align: left;
+    background: #fff3f3;
+    padding: 25px;
+    cursor: pointer;
+    display: flex;
+}
+
+.testimonials-col img{
+    height: 40px;
+    margin-left: 5px;
+    margin-right: 30px;
+    border-radius: 50%;
+}
+
+.testimonials-col p{
+    padding: 0;
+}
+
+.testimonials-col h3{
+    margin-top: 15px;
+    text-align: left;
+}
+
+.testimonials-col .fa-solid{
+    color: #f44336;
+}
+
+.testimonials-col .fa-regular{
+    color: #f44336;
+}
+
+/*----- CALL TO ACTION -----*/
+.cta{
+    margin: 100px auto;
+    width: 80%;
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(images/meeting.jpg);
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    text-align: center;
+    padding: 100px 0; 
+}
+
+.cta h1{
+    color: #fff;
+    margin-bottom: 40px;
+    padding: 0;
+
+}
+
+/*----- FOOTER -----*/
+.footer{
+    width: 100%;
+    text-align: center;
+    padding: 30px 0;
+}
+
+.footer h4{
+  margin-bottom: 25px;
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+.icons .fa-brands{
+    color: rgba(4,9,30,0.7);
+    margin: 0 13px;
+    cursor: pointer;
+    padding: 18px 0;
+}
+
+.fa-heart{
+    color: #f44336;
+}
+
+/*----------- the "ABOUT US" page --------*/
+.sub-header{
+    height: 50vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(4,9,30,0.7), rgba(4,9,30,0.7)), url(images/graduation3.jpg);
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    color: #fff;
+}
+
+.sub-header h1{
+    margin-top: 60px;
+}
+
+.about-us{
+    width: 80%;
+    margin: auto;
+    padding-top: 80px;
+    padding-bottom: 50px;
+}
+
+.about-col{
+    flex-basis: 48%;
+    padding: 30px 2px;
+}
+
+.about-col img{
+    width: 100%;
+}
+
+.about-col h1{
+    padding: 0;
+}
+
+.about-col p{
+    padding: 15px 0 25px;
+}
+
+.blue-btn{
+    border: 1px solid rgba(4,9,30,0.7);
+    color: rgba(4,9,30,0.7);
+}
+
+.blue-btn:hover{
+    color:#fff
+}
+
+/*----------- the "BLOG" page --------*/
+
+.blog-content{
+    width: 80%;
+    margin: auto;
+    padding: 60px 0;
+}
+
+.blog-left{
+    flex-basis: 65%;
+}
+
+.blog-left img{
+    width: 100%;
+}
+
+.blog-left h2{
+    color: #222;
+    font-weight: 600;
+    margin: 30px 0;
+}
+
+.blog-left p{
+    color: #999;
+    padding: 0;
+}
+
+.blog-right{
+    flex-basis: 32%;
+}
+
+.blog-right h3{
+    background: rgba(4,9,30,0.7);
+    color: #fff;
+    padding: 7px 0;
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/*Each div contains 2 spans.*/
+.blog-right div{
+    display: flex;  /*By making each div a flex container, we make the 2 spans its 2 flex items*/
+    align-items: center;
+    justify-content: space-between; /*between FIRST and SECOND span.*/
+    color: #555;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+/*----- COMMENT -----*/
+.comment-box{
+    border: 1px solid #ccc;
+    margin: 50px 0;
+    padding: 10px 20px;
+}
+
+.comment-box h3{
+    text-align: left;
+}
+
+.comment-form input, .comment-form textarea{
+    width: 100%;
+    padding: 10px;
+    margin: 15px 0;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    background: #f0f0f0;
+}
+
+.comment-form button{
+    margin: 10px 0;
+}
